@@ -1,0 +1,149 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div>
+    <br />
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div id="tituloInformes" fxFlex="grow">Cobranzas</div>
+    </div>
+    <div fxLayoutAlign="row">
+      <div fxFlex="50">
+        <mat-form-field appearance="outline">
+          <mat-label>BÚSQUEDA GLOBAL...</mat-label>
+          <input type="text" matInput [(ngModel)]="busquedaValor"
+            (keyup)="filtroBusqueda($event.target.value, 'general')" placeholder="EJ: 15543678-k" autocomplete="off" [disabled]="isLoadingResults">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div fxFlex="40" fxLayoutAlign="space-evenly center">
+        <mat-form-field appearance="outline">
+          <mat-label>PRODUCTOS</mat-label>
+          <mat-select [(value)]="selectedProd" (selectionChange)="filtroBusqueda($event.value,'producto')"
+            #selectProductos [disabled]="isLoadingResults">
+            <mat-option value="TODOS">--TODOS LOS PRODUCTOS--</mat-option>
+            <mat-option *ngFor="let producto of productos" [value]="producto">{{ producto }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>PÓLIZAS CRÍTICAS</mat-label>
+          <mat-select [(value)]="selectedCriticas" (selectionChange)="filtroBusqueda($event.value, 'indicador-poliza')"
+            #selectCriticas [disabled]="isLoadingResults">
+            <mat-option value="TODAS">--TODAS LAS PÓLIZAS--</mat-option>
+            <mat-option value="SI">SOLO CRÍTICAS</mat-option>
+            <mat-option value="NO">NO CRÍTICAS</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <button mat-raised-button color="primary" [ngClass]="['btn-clear-filters']" (click)="limpiarFiltros()" [disabled]="isLoadingResults">
+          <mat-icon id="icon-clear-filter">replay</mat-icon>
+          <div id="text-clear-filter"> LIMPIAR FILTROS</div>
+        </button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="mat-elevation-z8">
+        <div class="loading-shade" fxLayout="column" fxLayoutAlign="start stretch" *ngIf="isLoadingResults">
+          <app-table-loading [columns]="8" [rows]="10" class="mat-elevation-z8"></app-table-loading>
+        </div> 
+        <div class="table-container">
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="nombresCli">
+              <th mat-header-cell *matHeaderCellDef class='ch-dt'> NOMBRE CLIENTE </th>
+              <td mat-cell *matCellDef="let e"> {{e.nombresCli}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="rutCliente">
+              <th mat-header-cell *matHeaderCellDef class='ch-dt'> RUT CLIENTE </th>
+              <td mat-cell *matCellDef="let e"> {{e.rutCliente}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="telefonoPrincipalCli">
+              <th mat-header-cell *matHeaderCellDef class='ch-dt'> TELÉFONO </th>
+              <td mat-cell *matCellDef="let e"> {{e.telefonoPrincipalCli}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="emailPrincipalCli">
+              <th mat-header-cell *matHeaderCellDef class='ch-dt'> E-MAIL </th>
+              <td mat-cell *matCellDef="let e"> {{e.emailPrincipalCli}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="direccionP">
+              <th mat-header-cell *matHeaderCellDef class='ch-dt'> DIRECCIÓN </th>
+              <td mat-cell *matCellDef="let e"> {{e.direccionP }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="poliza">
+              <th mat-header-cell *matHeaderCellDef class='ch-dt'> N° PÓLIZA </th>
+              <td mat-cell *matCellDef="let e"> {{ e.poliza }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mesesImpago">
+              <th mat-header-cell *matHeaderCellDef class='ch-dt'> MESES IMPAGOS </th>
+              <td mat-cell *matCellDef="let e"> {{e.mesesImpago}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="accion">
+              <th mat-header-cell *matHeaderCellDef class='ch-dt'> DETALLE PRODUCTO </th>
+              <td mat-cell *matCellDef="let e">
+                <button mat-icon-button color="primary" appFilterMatItem [matMenuTriggerFor]="menudetalle"
+                  (click)="openDetallePoliza(e.rutCliente, e.poliza)">
+                  <mat-icon>launch</mat-icon>
+                </button>
+                <mat-menu yPosition="above" appFilterMatItem #menudetalle="matMenu">
+                  <ng-template matMenuContent>
+                    <table class="table-detalle">
+                      <tbody>
+                        <tr>
+                          <td colspan="2" id="cabecera-det-prod">
+                            DETALLE PÓLIZA
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>PRODUCTO</td>
+                          <td>{{ e.descPlan }}</td>
+                        </tr>
+                        <tr>
+                          <td>PERIODICIDAD DE PAGO</td>
+                          <td>{{ e.descPeriodicidad }}</td>
+                        </tr>
+                        <tr>
+                          <td>PRIMA SFP</td>
+                          <td>{{ e.mtoPrima }}</td>
+                        </tr>
+                        <tr>
+                          <td>CUENTA CORRIENTE</td>
+                          <td>{{ e.idNumeroCuenta }}</td>
+                        </tr>
+                        <tr>
+                          <td>VALOR PÓLIZA</td>
+                          <td>{{ valPol }} </td>
+                        </tr>
+                        <tr>
+                          <td>PÓLIZA CRÍTICA</td>
+                          <td>{{ e.IndicadorPolizaCritica }} </td>
+                        </tr>
+                        <tr>
+                          <td>ESTADO PÓLIZA</td>
+                          <td>{{ e.descEstadoMigra }} </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ng-template>
+                </mat-menu>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!isLoadingResults">
+            <div id='msgInfo' *ngIf="dataSource.filteredData.length === 0" fxLayoutAlign="center center" fxFlex="50">
+              <div>
+                <mat-icon id="icon-emty-tabla">error_outline</mat-icon>
+              </div> {{ msgMatTable }}
+            </div>
+          </div>
+          <mat-paginator [hidden]="!dataSource.data.length" [pageSize]="10" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@interceptors/*": ["src/app/core/interceptors/*"],
+      "@modules/*": ["src/app/core/modules/*"],
+      "@components/*": ["src/app/components/*"],
+      "@services/*": ["src/app/services/*"],
+      "@services-cobranzas/*": ["src/app/components/agente/cobranzas/services/*"],
+      "@comp-custom/*": ["src/app/shared/component-custom/*"],
+      "@interfaces/*": ["src/app/shared/models/interfaces/*"],
+      "@env/*": ["src/environments/*"],
+    },
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  }
+}

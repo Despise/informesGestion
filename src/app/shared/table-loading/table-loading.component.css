@@ -1,0 +1,102 @@
+/*
+* css para loading de tabla
+*/
+.table-loader {
+  background-color: #FFF;
+  color: #666;
+  width: 100%;
+  padding: 0;
+}
+
+.table-loader th {
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 0px 10px 0px 10px;
+}
+
+.table-loader td {
+  border-top: 0px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 0px 10px 0px 10px;
+}
+
+.table-loader span {
+  width: calc(100% - 5px);
+  height: 15px;
+  border-radius: 5px;
+  background: #dedfe1;
+  background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+  background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+  background-repeat: no-repeat;
+  animation: loading-cells 1.7s infinite linear;
+  display: inline-block;
+  min-width: 15px;
+}
+
+.ch-dt {
+  background: #4066b3;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left !important;
+}
+
+.h-cell {
+   height: 50px;
+}
+
+.ultimo-tr {
+  background: #ECF0EF;
+}
+
+.centrar {
+  text-align: center;
+}
+
+.col1 {
+  width: 25px;
+}
+
+.col2 {
+  width: 45px;
+}
+
+.col3 {
+  width: 60px;
+}
+
+.col4 {
+  width: 73px;
+}
+
+.col5 {
+  width: 92px;
+}
+
+.col6 {
+  width: 113px;
+}
+
+.col7 {
+  width: 145px;
+}
+
+.col8 {
+  width: 160px;
+}
+
+.col9 {
+  width: 185px;
+}
+
+.col10 {
+  width: 200px;
+}
+
+.col11 {
+  width: 344px;
+}
+
+@keyframes loading-cells {
+0% { background-position: -500px; }
+100% { background-position: 300px; }
+}

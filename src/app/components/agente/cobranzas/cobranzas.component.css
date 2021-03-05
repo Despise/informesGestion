@@ -1,0 +1,225 @@
+/*
+* css para tabla cobranzas
+*/
+.container {
+  position: relative;
+  min-height: 600px;
+}
+
+.loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  /* background: rgba(0, 0, 0, 0.035);
+  z-index: 1; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-container {
+  position: relative;
+  max-height: auto;
+  overflow: auto;
+}
+
+.mat-row {
+  background: #ffffff;
+  transition: background-color .5s;
+}
+
+.mat-row:hover {
+  background: #EBECF0;
+  transition: background-color .5s;
+}
+
+table {
+  width: 100%;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 14px;
+}
+
+#tituloInformes {
+  font-size: 1.1em;
+  margin-bottom: 20px;;
+  font-weight: bolder;
+  border-bottom: 1.5px solid #000066;
+  color: #003399;
+}
+
+button[mat-button].btn-toggle {
+  position: absolute !important;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 0rem !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  height: 1.5rem;
+  padding: 0 !important;
+  line-height: 1rem !important;
+  box-sizing: border-box;
+  width: 1.65rem;
+}
+
+#icon-clear-filter {
+  position: absolute;
+  padding-top: 5px;
+  display: flex;
+}
+
+#text-clear-filter {
+  position: relative; 
+  display: flex;
+  left: 30px;
+  top: 1px;
+}
+
+#cabecera-det-prod {
+  background:#4066b3;
+  color:#fff;
+}
+
+#icon-emty-tabla {
+  font-size: 2.6em; 
+  width: auto; 
+  padding-right: 5px;
+}
+
+.btn-clear-filters {
+  width: 170px;
+  height: 45px;
+  top: 5px;
+}
+
+.mat-menu-item-highlighted:not([disabled]),
+.mat-menu-item.cdk-keyboard-focused:not([disabled]),
+.mat-menu-item.cdk-program-focused:not([disabled]),
+.mat-menu-item:hover:not([disabled]) {
+  background: #fff;
+}
+
+.menu-title { 
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.ch-dt {
+  background: #4066b3;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+.desc-spinner {
+  padding-top: 30px; 
+  font-size: .9em; 
+  color: #33b1e6; 
+  font-weight: bold;
+}
+
+tr.mat-row {
+  height: 50px;
+}
+
+td.mat-cell {
+  color: #333333;
+  font-size: .75em;
+  padding: 0;
+  border-bottom: 1px solid #C3C3C3;
+}
+
+.mat-column-nombresCli  {
+  width: 15rem;
+  text-align: left;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.mat-column-rutCliente  {
+  width: 5rem;
+  text-align: right;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.mat-column-telefonoPrincipalCli {
+  width: 5rem;
+  text-align: right;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.mat-column-emailPrincipalCli {
+  width: 14rem;
+  text-align: left;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.mat-column-direccionP {
+  width: 15rem;
+  text-align: left;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.mat-column-poliza {
+  width: 5rem;
+  text-align: right;
+  padding-left: 5px !important;
+  padding-right: 5px !important;     
+}
+.mat-column-mesesImpago {
+  width: 4rem;
+  text-align: center;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.mat-column-accion {
+  width: 4rem;
+  text-align: center;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+mat-paginator {
+  color: #000066;
+  background: #ECF0EF;
+  font-size: .8em;
+}
+
+.col-load-table {
+  display: block;
+  height: 485px;
+  width: auto;
+}
+
+#msgInfo {
+  color: #003399;
+  font-size: 1.1em;
+  background: #ECF0EF;
+  padding: 30px 10px 30px 10px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.table-detalle {
+  font-size: .7em;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.table-detalle tbody tr td:nth-child(1) {
+  background: #ECF0EF;
+  height: 20px;
+  width: 125px;
+  padding:5px;
+}
+.table-detalle tbody tr td:nth-child(2) {
+  background: #fff;
+  height: 20px;
+  width: 100px;
+  padding:5px;
+}

@@ -1,0 +1,45 @@
+<table cellpadding="0" cellspacing="0" width="100%" class="table-loader">
+    <thead>
+        <tr>
+            <th class="col10 ch-dt h-cell">
+                <span></span>
+            </th>
+            <th class="col4 ch-dt h-cell">
+                <span></span>
+            </th>
+            <th class="col5 ch-dt h-cell">
+                <span></span>
+            </th>
+            <th class="col10 ch-dt h-cell">
+                <span></span>
+            </th>
+            <th class="col10 ch-dt h-cell">
+                <span></span>
+            </th>
+            <th class="col5 ch-dt h-cell">
+                <span></span>
+            </th>
+            <th class="col5 ch-dt h-cell">
+                <span></span>
+            </th>
+            <th class="col4 ch-dt h-cell">
+                <span></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let fila of filas">
+            <td class="h-cell" *ngFor="let columna of columnas">
+                <span></span>
+            </td>
+            <td class="h-cell">
+                <span class="centrar"></span>
+            </td>
+        </tr>
+        <tr class="ultimo-tr">
+            <td class="h-cell" *ngFor="let columna of columnas">
+            </td>
+            <td class="h-cell"></td>
+        </tr>
+    </tbody>
+</table>
